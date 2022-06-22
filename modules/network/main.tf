@@ -5,6 +5,11 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.resourcegroup_location
 }
 
+resource "azurerm_virtual_network_dns_servers" "vnet" {
+  virtual_network_id = azurerm_virtual_network.vnet.id
+  dns_servers        = var.dns_servers
+}
+
 resource "azurerm_subnet" "sn" {
   name                 = var.vnet_sn_name
   resource_group_name  = var.resourcegroup_name

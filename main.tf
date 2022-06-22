@@ -9,7 +9,14 @@ terraform {
       version = "~> 3.2.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "rg_terraformstate"
+    storage_account_name = "nyzeterraformtfstate"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
 }
+
 
 provider "azurerm" {
   features {}

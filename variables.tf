@@ -1,3 +1,6 @@
+variable "global_settings" {
+  
+}
 variable "vnets" {
   type = map(any)
 }

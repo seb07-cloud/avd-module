@@ -45,6 +45,7 @@ module "network" {
   vnet_sn_name           = "sn_${each.key}_vnet_${each.key}"
   vnet_subnet_address    = each.value["snet_net"]
   vnet_nsg_name          = "nsg_${each.key}_vnet_${each.key}"
+  dns_servers            = var.dns_servers
 }
 
 module "avd" {

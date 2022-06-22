@@ -24,3 +24,6 @@ variable "vnet_nsg_name" {
   type        = string
   description = "Network security group name"
 }
+variable "dns_servers" {
+  type = list(any)
+}

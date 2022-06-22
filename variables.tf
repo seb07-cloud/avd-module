@@ -56,3 +56,30 @@ variable "desktop_vm_image_version" {
 variable "sn_avd_name" {
   type = string
 }
+variable "dns_servers" {
+  type = list(any)
+}
+variable "resource_group_inf_name" {
+ type = string 
+}
+variable "resource_group_vpn_name" {
+  type = string
+}
+variable "vnet_vpn_name" {
+  type = string
+}
+variable "vnet_inf_name" {
+  type = string
+}
+variable "vpn_psk" {
+  type = string
+}
+variable "gateway_sn" {
+  type = string
+}
+variable "onpremvpngwip" {
+  type = string
+}
+variable "onpremsubnet" {
+  type = string
+}

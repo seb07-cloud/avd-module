@@ -16,7 +16,24 @@ vnets = {
     vnet_net = ["10.127.0.0/16"],
     snet_net = ["10.127.1.0/24"]
   }
+  vpn = {
+    vnet_net = ["10.127.0.0/16"],
+    snet_net = ["10.127.1.0/24"]
+  }
 }
+
+#DNS Server for Vnet`s
+dns_servers = [ "10.0.0.1", "10.0.0.2" ]
+
+#VPN Config
+resource_group_inf_name = "rg_infra"
+resource_group_vpn_name = "rg_vpn"
+vnet_vpn_name = "vnet_vpn"
+vnet_inf_name = "vnet_infra"
+vpn_psk = ""
+gateway_sn = ""
+onpremvpngwip = ""
+onpremsubnet = ""
 
 #Customer prefix
 customer_prefix = "dyna"

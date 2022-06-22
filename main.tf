@@ -82,4 +82,7 @@ module "compute" {
   desktop_vm_image_offer     = var.desktop_vm_image_offer
   desktop_vm_image_sku       = var.desktop_vm_image_sku
   desktop_vm_image_version   = var.desktop_vm_image_version
+  avd_workspace_name         = ["${module.avd.workspace_name}"]
+  avd_hostpool_name          = ["${module.avd.hostpool_name}"]
+  resourcegroup_avd_id       = azurerm_resource_group.rg_avd.id
 }

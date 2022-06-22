@@ -103,7 +103,7 @@ resource "azurerm_virtual_machine_extension" "AVDModule" {
   ]
 
   name                 = "Microsoft.PowerShell.DSC"
-  virtual_machine_id   = "${data.azurerm_resource_group.rg_avd.id}/providers/Microsoft.Compute/virtualMachines/${var.customer_prefix}-${var.avd_sessionhost_prefix}-${count.index}"
+  virtual_machine_id   = "${var.resourcegroup_avd_id}/providers/Microsoft.Compute/virtualMachines/${var.customer_prefix}-${var.avd_sessionhost_prefix}-${count.index}"
   publisher            = "Microsoft.Powershell"
   type                 = "DSC"
   type_handler_version = "2.73"

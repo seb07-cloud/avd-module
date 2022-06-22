@@ -86,3 +86,12 @@ variable "onpremvpngwip" {
 variable "onpremsubnet" {
   type = string
 }
+variable "avd_workspace_name" {
+  type = string
+}
+variable "resourcegroup_avd_id" {
+  type = string
+}
+variable "avd_hostpool_name" {
+  type = string
+}

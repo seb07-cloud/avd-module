@@ -67,9 +67,9 @@ module "avd" {
   expiration_date          = time_rotating.avd_token.rotation_rfc3339
 }
 
-module "compute" {
+module "sessionhosts" {
   avd_sessionhost_count      = var.avd_sessionhost_count
-  source                     = "./modules/compute"
+  source                     = "./modules/sessionhosts"
   customer_prefix            = var.customer_prefix
   avd_sessionhost_prefix     = var.avd_sessionhost_prefix
   sn_avd_name                = var.sn_avd_name

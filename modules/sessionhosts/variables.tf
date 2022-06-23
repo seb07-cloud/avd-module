@@ -50,3 +50,9 @@ variable "avd_hostpool_name" {
 variable "resourcegroup_avd_id" {
   type = string
 }
+variable "environment" {
+  type = string
+}
+variable "registration_info_token" {
+  type = string
+}

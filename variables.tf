@@ -1,6 +1,3 @@
-variable "global_settings" {
-  
-}
 variable "vnets" {
   type = map(any)
 }
@@ -84,14 +81,23 @@ variable "onpremvpngwip" {
   type = string
 }
 variable "onpremsubnet" {
-  type = string
+  type = list(string)
 }
 variable "avd_workspace_name" {
   type = string
 }
-variable "resourcegroup_avd_id" {
+variable "avd_resourcegroup_name" {
   type = string
 }
 variable "avd_hostpool_name" {
+  type = string
+}
+variable "environment" {
+  type = string
+}
+variable "expiration_date" {
+  type = string
+}
+variable "registration_info_token" {
   type = string
 }

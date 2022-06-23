@@ -55,22 +55,11 @@ module "network" {
   dns_servers            = var.dns_servers
 }
 
-module "avd" {
-  avd_hostpool_count       = var.avd_hostpool_count
-  source                   = "./modules/avd"
-  customer_prefix          = var.customer_prefix
-  resourcegroup_name       = azurerm_resource_group.rg_avd.name
-  resourcegroup_location   = azurerm_resource_group.rg_avd.location
-  load_balancer_type       = var.load_balancer_type
-  avd_hostpool_type        = var.avd_hostpool_type
-  maximum_sessions_allowed = var.max_sessions_per_hostpool
-  expiration_date          = time_rotating.avd_token.rotation_rfc3339
-}
-
 module "sessionhosts" {
   avd_sessionhost_count      = var.avd_sessionhost_count
   source                     = "./modules/sessionhosts"
   customer_prefix            = var.customer_prefix
+  environment                = var.environment
   avd_sessionhost_prefix     = var.avd_sessionhost_prefix
   sn_avd_name                = var.sn_avd_name
   vm_size                    = var.vm_size
@@ -82,7 +71,8 @@ module "sessionhosts" {
   desktop_vm_image_offer     = var.desktop_vm_image_offer
   desktop_vm_image_sku       = var.desktop_vm_image_sku
   desktop_vm_image_version   = var.desktop_vm_image_version
-  avd_workspace_name         = ["${module.avd.workspace_name}"]
-  avd_hostpool_name          = ["${module.avd.hostpool_name}"]
+  avd_workspace_name         = "${upper(var.customer_prefix)}-Workspace"
+  avd_hostpool_name          = "hp_${lower(var.avd_hostpool_type)}_${lower(var.customer_prefix)}_${count.index}"
   resourcegroup_avd_id       = azurerm_resource_group.rg_avd.id
+  registration_info_token    = var.registration_info_token
 }

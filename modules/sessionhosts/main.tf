@@ -8,7 +8,7 @@ resource "azurerm_public_ip" "sessionhost_ext_nic" {
   allocation_method   = "Static"
 
   tags = {
-    Environment = "STAGE"
+    Environment = var.environment
   }
 }
 
@@ -71,8 +71,8 @@ resource "azurerm_windows_virtual_machine" "avd_sessionhost" {
   }
 
   tags = {
-    Environment = "STAGE"
-    hostpool    = var.avd_workspace_name
+    Environment = var.environment
+    Hostpool    = var.avd_workspace_name
   }
 }
 
@@ -120,7 +120,7 @@ SETTINGS
   protected_settings   = <<PROTECTED_SETTINGS
   {
     "properties": {
-      "registrationInfoToken": "${azurerm_virtual_desktop_host_pool_registration_info.registrationinfo.token}"
+      "registrationInfoToken": "${registration_info_token}"
     }
   }
 PROTECTED_SETTINGS

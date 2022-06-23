@@ -1,8 +1,8 @@
 #Vnet Config
 resource "azurerm_virtual_network" "vnet_vpn" {
     name                = "vnet_vpn"
-    address_space       = var.vnet_vpn
-    location            = var.resource_group_location
+    address_space       = var.vnets.vpn.vnet_net
+    location            = var.resourcegroup_location
     resource_group_name = var.resource_group_vpn_name
 }
 
@@ -10,7 +10,7 @@ resource "azurerm_subnet" "GatewaySubnet" {
   name                 = "GatewaySubnet"
   resource_group_name  = var.resource_group_vpn_name
   virtual_network_name = var.vnet_vpn_name
-  address_prefixes     = var.gateway_sn
+  address_prefixes     = var.vnets.vpn.snet_net
 }
 
 resource "azurerm_virtual_network_dns_servers" "vnet_vpn" {
@@ -18,25 +18,18 @@ resource "azurerm_virtual_network_dns_servers" "vnet_vpn" {
   dns_servers        = var.dns_servers
 }
 
-resource "azurerm_subnet" "GatewaySubnet" {
-  name                 = "GatewaySubnet"
-  resource_group_name  = var.resource_group_vpn_name
-  virtual_network_name = var.vnet_vpn_name
-  address_prefixes     = var.gateway_sn
-}
-
 # Gateway Config
 resource "azurerm_public_ip" "pip_vpngw_vnetg_infrastructure_vpngw" {
   name                = "pip_vpngw_vnetg_infrastructure_vpngw"
-  location            = var.resource_group_location
+  location            = var.resourcegroup_location
   resource_group_name = var.resource_group_vpn_name
   allocation_method   = "Dynamic"
 }
 
 
-resource "azurerm_var_network_gateway" "ln_gw_onpremise" {
+resource "azurerm_local_network_gateway" "ln_gw_onpremise" {
   name                = "ln_gw_onpremise"
-  location            = var.resource_group_location
+  location            = var.resourcegroup_location
   resource_group_name = var.resource_group_vpn_name
   gateway_address     = var.onpremvpngwip
   address_space       = var.onpremsubnet
@@ -44,7 +37,7 @@ resource "azurerm_var_network_gateway" "ln_gw_onpremise" {
 
 resource "azurerm_virtual_network_gateway" "vpngw_vnetg_infrastructure_vpngw" {
   name                = "vpngw_vnetg_infrastructure_vpngw"
-  location            = var.resource_group_location
+  location            = var.resourcegroup_location
   resource_group_name = var.resource_group_vpn_name
 
   type     = "Vpn"
@@ -65,12 +58,12 @@ resource "azurerm_virtual_network_gateway" "vpngw_vnetg_infrastructure_vpngw" {
 
 resource "azurerm_virtual_network_gateway_connection" "lw_gw_conn_onpremise" {
   name                = "lw_gw_conn_onpremise"
-  location            = var.resource_group_location
+  location            = var.resourcegroup_location
   resource_group_name = var.resource_group_vpn_name
 
   type                       = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpngw_vnetg_infrastructure_vpngw.id
-  var_network_gateway_id   = azurerm_var_network_gateway.ln_gw_onpremise.id
+  local_network_gateway_id   = azurerm_local_network_gateway.ln_gw_onpremise.id
 
   shared_key = var.vpn_psk
   connection_protocol = "IKEv1"

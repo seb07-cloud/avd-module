@@ -16,7 +16,7 @@ $STORAGEACCOUNT = New-AzStorageAccount -ResourceGroupName $RESOURCEGROUPNAME `
     -Location $ENV:TF_VAR_REGION `
     -Name $STORAGEACCOUNTNAME `
     -AllowBlobPublicAccess $True
- 
+
 New-AzStorageContainer -Name $CONTAINERNAME `
     -Context $STORAGEACCOUNT.Context `
     -Permission blob

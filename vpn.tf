@@ -1,9 +1,9 @@
 #Vnet Config
 resource "azurerm_virtual_network" "vnet_vpn" {
-    name                = "vnet_vpn"
-    address_space       = var.vnets.vpn.vnet_net
-    location            = var.resourcegroup_location
-    resource_group_name = var.resource_group_vpn_name
+  name                = "vnet_vpn"
+  address_space       = var.vnets.vpn.vnet_net
+  location            = var.resourcegroup_location
+  resource_group_name = var.resource_group_vpn_name
 }
 
 resource "azurerm_subnet" "GatewaySubnet" {
@@ -46,7 +46,7 @@ resource "azurerm_virtual_network_gateway" "vpngw_vnetg_infrastructure_vpngw" {
 
   active_active = false
   enable_bgp    = false
-  
+
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
@@ -65,17 +65,17 @@ resource "azurerm_virtual_network_gateway_connection" "lw_gw_conn_onpremise" {
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpngw_vnetg_infrastructure_vpngw.id
   local_network_gateway_id   = azurerm_local_network_gateway.ln_gw_onpremise.id
 
-  shared_key = var.vpn_psk
+  shared_key          = var.vpn_psk
   connection_protocol = "IKEv1"
 
   ipsec_policy {
-    dh_group = "DHGroup14"
-    ike_encryption = "AES256"
-    ike_integrity = "SHA256"
+    dh_group         = "DHGroup14"
+    ike_encryption   = "AES256"
+    ike_integrity    = "SHA256"
     ipsec_encryption = "AES256"
-    ipsec_integrity = "SHA256"
-    pfs_group = "PFS2048"
-    sa_lifetime = "86400"
-    sa_datasize = "10485760"
-  } 
+    ipsec_integrity  = "SHA256"
+    pfs_group        = "PFS2048"
+    sa_lifetime      = "86400"
+    sa_datasize      = "10485760"
+  }
 }

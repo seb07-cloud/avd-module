@@ -1,4 +1,4 @@
-#Resourcegroup config 
+#Resourcegroup config
 resource_groups        = ["rg_infra", "rg_avd"]
 resourcegroup_location = "westeurope"
 environment            = "PROD"

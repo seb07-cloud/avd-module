@@ -60,7 +60,7 @@ variable "dns_servers" {
   type = list(any)
 }
 variable "resource_group_inf_name" {
- type = string 
+  type = string
 }
 variable "resource_group_vpn_name" {
   type = string

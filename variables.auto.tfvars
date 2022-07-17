@@ -46,7 +46,7 @@ avd_sessionhost_prefix = "avd"
 avd_sessionhost_count  = 2
 sn_avd_name            = "sn_avd_vnet_avd"
 avd_resourcegroup_name = "rg_avd"
-expiration_date        = time_rotating.avd_token.rotation_rfc3339
+
 
 #Image config
 desktop_vm_image_publisher = "MicrosoftWindowsDesktop"

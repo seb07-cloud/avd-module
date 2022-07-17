@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"sessionhosts","Source":"./modules/sessionhosts","Dir":"modules/sessionhosts"},{"Key":"network","Source":"./modules/network","Dir":"modules/network"}]}
+{"Modules":[{"Key":"network","Source":"./modules/network","Dir":"modules/network"},{"Key":"sessionhosts","Source":"./modules/sessionhosts","Dir":"modules/sessionhosts"}]}

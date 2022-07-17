@@ -1,3 +1,7 @@
+locals {
+  expiration_date = time_rotating.avd_token.rotation_rfc3339
+}
+
 resource "azurerm_virtual_desktop_host_pool" "avd_hp" {
 
   count = var.avd_hostpool_count
@@ -21,7 +25,7 @@ resource "azurerm_virtual_desktop_host_pool_registration_info" "registrationinfo
   count = var.avd_hostpool_count
 
   hostpool_id     = azurerm_virtual_desktop_host_pool.avd_hp.*.id[count.index]
-  expiration_date = var.expiration_date
+  expiration_date = local.expiration_date
 }
 
 resource "azurerm_virtual_desktop_workspace" "workspace" {
